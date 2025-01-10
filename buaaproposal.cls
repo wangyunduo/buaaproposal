@@ -32,7 +32,11 @@
 % \RequirePackage{txfonts}
 \RequirePackage{anyfontsize}
 
+% 设置 main font
 \setmainfont{Times New Roman}
+% 使用指定路径字体文件设置 main CJK font
+\setCJKmainfont[AutoFakeBold={1.25}, Path=\string fonts/]{simsun.ttc}
+
 \let\songti\relax
 \let\heiti\relax
 
