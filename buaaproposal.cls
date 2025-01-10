@@ -125,6 +125,12 @@
 \newcommand{\stuno}[1]{%
     \gdef\buaaatstuno{#1}
 }
+% 日期
+\gdef\buaaproposaldate{\@date}
+\renewcommand{\date}[1]{
+    \gdef\buaaproposaldate{#1}
+}
+
 % 中文关键词
 \gdef\buaaatckeyword{中文关键词}
 \newcommand{\ckeyword}[1]{%
@@ -249,7 +255,7 @@
             \end{tabular} \par}
             \vspace{3cm}
             {\sanhao \bfseries \heiti \buaaatuniversity \buaaatschool \par
-            \xiaosan \mdseries \heiti \@date \par }
+            \xiaosan \mdseries \heiti \buaaproposaldate \par }
         \end{center}
         \vspace{\fill}
     \end{titlepage}
