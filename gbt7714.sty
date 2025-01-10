@@ -6,11 +6,11 @@
 %%
 %% gbt7714.dtx  (with options: `package')
 %% -------------------------------------------------------------------
-%% GB/T 7714-2015 BibTeX Style
-%% https://github.com/CTeX-org/gbt7714-bibtex-style
-%% Version: 2020/03/14 v2.0.1
+%% GB/T 7714 BibTeX Style
+%% https://github.com/zepinglee/gbt7714-bibtex-style
+%% Version: 2024/03/08 v2.1.6
 %% -------------------------------------------------------------------
-%% Copyright (C) 2016-2020 by Zeping Lee <zepinglee AT gmail.com>
+%% Copyright (C) 2016--2024 by Zeping Lee <zepinglee AT gmail.com>
 %% -------------------------------------------------------------------
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -18,50 +18,50 @@
 %% The latest version of this license is in
 %%    https://www.latex-project.org/lppl.txt
 %% and version 1.3c or later is part of all distributions of LaTeX
-%% version 2005/12/01 or later.
+%% version 2008 or later.
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesPackage{gbt7714}
-  [2020/03/14 v2.0.1 GB/T 7714-2015 BibTeX Style]
+  [2024/03/08 v2.1.6 GB/T 7714 BibTeX Style]
 \newif\ifgbt@legacy@interface
 \newif\ifgbt@mmxv
 \newif\ifgbt@numerical
 \newif\ifgbt@super
-\newcommand\gbt@obselete@option[1]{%
-  \PackageWarning{gbt7714}{The option "#1" is obselete}%
+\newcommand\gbt@obsolete@option[1]{%
+  \PackageWarning{gbt7714}{The option "#1" is obsolete}%
 }
 \DeclareOption{2015}{%
-  \gbt@obselete@option{2015}%
+  \gbt@obsolete@option{2015}%
   \gbt@legacy@interfacetrue
   \gbt@mmxvtrue
 }
 \DeclareOption{2005}{%
-  \gbt@obselete@option{2005}%
+  \gbt@obsolete@option{2005}%
   \gbt@legacy@interfacetrue
   \gbt@mmxvfalse
 }
 \DeclareOption{super}{%
-  \gbt@obselete@option{super}%
+  \gbt@obsolete@option{super}%
   \gbt@legacy@interfacetrue
   \gbt@numericaltrue
   \gbt@supertrue
 }
 \DeclareOption{numbers}{%
-  \gbt@obselete@option{numbers}%
+  \gbt@obsolete@option{numbers}%
   \gbt@legacy@interfacetrue
   \gbt@numericaltrue
   \gbt@superfalse
 }
 \DeclareOption{authoryear}{%
-  \gbt@obselete@option{authoryear}%
+  \gbt@obsolete@option{authoryear}%
   \gbt@legacy@interfacetrue
   \gbt@numericalfalse
 }
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{natbib}}
 \ProcessOptions\relax
-% \RequirePackage[compress]{natbib}
-\setcitestyle{compress}
+\RequirePackage{natbib}
 \RequirePackage{url}
+\def\NAT@cmprs{\@ne}
 \renewcommand\newblock{\space}
 \newcommand\bibstyle@super{\bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
 \newcommand\bibstyle@numbers{\bibpunct{[}{]}{,}{n}{,}{,}}
@@ -71,6 +71,44 @@
 \@namedef{bibstyle@gbt7714-author-year}{\bibstyle@authoryear}
 \@namedef{bibstyle@gbt7714-2005-numerical}{\bibstyle@super}
 \@namedef{bibstyle@gbt7714-2005-author-year}{\bibstyle@authoryear}
+\renewcommand\NAT@citesuper[3]{%
+  \ifNAT@swa
+    \if*#2*\else
+      #2\NAT@spacechar
+    \fi
+    % \unskip\kern\p@\textsuperscript{\NAT@@open#1\NAT@@close}%
+    %  \if*#3*\else\NAT@spacechar#3\fi\else #1\fi\endgroup}
+    \unskip\kern\p@
+    \textsuperscript{%
+      \NAT@@open
+      #1%
+      \NAT@@close
+      \if*#3*\else
+        #3%
+      \fi
+    }%
+    \kern\p@
+  \else
+    #1%
+  \fi
+  \endgroup
+}
+\renewcommand\NAT@citenum[3]{%
+  \ifNAT@swa
+    \NAT@@open
+    \if*#2*\else
+      #2\NAT@spacechar
+    \fi
+    % #1\if*#3*\else\NAT@cmt#3\fi\NAT@@close\else#1\fi\endgroup}
+    #1\NAT@@close
+    \if*#3*\else
+      \textsuperscript{#3}%
+    \fi
+  \else
+    #1%
+  \fi
+  \endgroup
+}
 \def\NAT@citexnum[#1][#2]#3{%
   \NAT@reset@parser
   \NAT@sort@cites{#3}%
@@ -151,15 +189,17 @@
         % }{}%
         \NAT@mbox{\NAT@@close}%
         \@ifnum{\NAT@ctype=\z@}{%
-          \if*#2*\else\textsuperscript{#2}\fi
+          \if*#2*\else
+            \textsuperscript{#2}%
+          \fi
         }{}%
+        \NAT@super@kern
       \fi
   }{#1}{#2}%
 }%
-\renewcommand\NAT@citesuper[3]{\ifNAT@swa
-  \if*#2*\else#2\NAT@spacechar\fi
-\unskip\kern\p@\textsuperscript{\NAT@@open#1\NAT@@close\if*#3*\else#3\fi}%
-   \else #1\fi\endgroup}
+\renewcommand\NAT@cite%
+    [3]{\ifNAT@swa\NAT@@open\if*#2*\else#2\NAT@spacechar\fi
+        #1\NAT@@close\if*#3*\else\textsuperscript{#3}\fi\else#1\fi\endgroup}
 \def\NAT@citex%
   [#1][#2]#3{%
   \NAT@reset@parser
@@ -252,10 +292,11 @@
        \if\relax\NAT@date\relax\else\NAT@@close\fi
        \if*#2*\else\textsuperscript{#2}\fi
      \fi}{#1}{#2}}
-\renewcommand\NAT@cite%
-    [3]{\ifNAT@swa\NAT@@open\if*#2*\else#2\NAT@spacechar\fi
-        #1\NAT@@close\if*#3*\else\textsuperscript{#3}\fi\else#1\fi\endgroup}
 \renewcommand\@biblabel[1]{[#1]\hfill}
+\let\NAT@bare@aux\NAT@bare
+\def\NAT@bare#1(#2){%
+ \begingroup\edef\x{\endgroup
+   \unexpanded{\NAT@bare@aux#1}(\@firstofone#2)}\x}
 \g@addto@macro\UrlBreaks{%
   \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9%
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M
