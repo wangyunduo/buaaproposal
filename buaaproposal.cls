@@ -192,12 +192,13 @@
     \pagenumbering{roman}
 
     \fancyhead[L]{\zihao{-5}\kaiti
-        \buaaatthesistitle \vspace{1.5mm}
+        论文题目：\buaaatthesistitle \vspace{1.5mm}
     }
-    \fancyfoot[C]{
+    \fancyfoot[L]{
         \hspace{1.5mm}
-        \kaiti\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
-        \hfill\hfill
+        \kaiti\zihao{-5}
+        \buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
+        \hfill
         \songti\zihao{-5}$\cdot$\quad\thepage\quad$\cdot$
         \hspace{1.5mm}
     }
@@ -213,12 +214,13 @@
     \pagenumbering{arabic}
 
     \fancyhead[L]{\zihao{-5}\kaiti
-        \buaaatthesistitle \vspace{1.5mm}
+        论文题目：\buaaatthesistitle \vspace{1.5mm}
     }
-    \fancyfoot[C]{
+    \fancyfoot[L]{
         \hspace{1.5mm}
-        \kaiti\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
-        \hfill\hfill
+        \kaiti\zihao{-5}
+        \buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
+        \hfill
         \songti\zihao{-5}$\cdot$\quad\thepage\quad$\cdot$
         \hspace{1.5mm}
     }
