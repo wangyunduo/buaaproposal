@@ -1,9 +1,9 @@
-%%%%%%%%%%%%%%%%% 模板声明 %%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%% 模板声明 %%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[2007/10/19]
-\ProvidesClass{buaascseproposal}[The LaTeX template for thesis proposal of SCSE, BUAA]
-\typeout{Document Class `buaascseproposal' v0.1 by ZKL (2022/07/01)}
+\ProvidesClass{buaaproposal}[a LaTeX template for BUAA graduate thesis proposal]
+\typeout{Document Class `buaaproposal' v0.1 by Yunduo (2025/01/10)}
 
-%%%%%%%%%%%%%%%%% 模板选项 %%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%% 模板选项 %%%%%%%%%%%%%%%%%
 \newif\ifbuaaatmaster\buaaatmasterfalse
 \newif\ifbuaaatdoctor\buaaatdoctorfalse
 \newif\ifbuaaatproposal\buaaatproposalfalse
@@ -38,6 +38,7 @@
 
 \setCJKfamilyfont{songti}[AutoFakeBold={1.25}]{SimSun}
 \setCJKfamilyfont{heiti}[AutoFakeBold={1.25}]{SimHei}
+
 \setCJKfamilyfont{hwxingkai}[AutoFakeBold={1.25}]{STXingkai}
 \setCJKfamilyfont{kaishu}[AutoFakeBold={1.25}]{STkaishu}
 
@@ -222,20 +223,20 @@
         \begin{center}
             {\xiaoer \bfseries \kaishu \buaaatuniversity \buaaatschool \par}
             \vspace{3cm}
-            {\yihao \bfseries \heiti \buaaatdegree 研究生学位论文 \par \buaaatdoctype \par} 
-            \vspace{4cm} 
-            {\xiaosan \kaishu 
+            {\yihao \bfseries \heiti \buaaatdegree 研究生学位论文 \par \buaaatdoctype \par}
+            \vspace{4cm}
+            {\xiaosan \kaishu
             \begin{tabular}{rc}
             \textbf{\kaishu 论文题目}： & \buaaatthesistitle \\ \cline{2-2}
             \textbf{\kaishu 专~~~~~~~~业}： & \buaaatmajor \\ \cline{2-2}
             \textbf{\kaishu 研究方向}： & \buaaatdirection \\ \cline{2-2}
-            \textbf{\kaishu 研~~究~~生}： & \buaaatauthorname \\ \cline{2-2}
             \textbf{\kaishu 学~~~~~~~~号}： & \buaaatstuno \\ \cline{2-2}
+            \textbf{\kaishu 姓~~~~~~~~名}： & \buaaatauthorname \\ \cline{2-2}
             \textbf{\kaishu 指导教师}： & \buaaattutor \\ \cline{2-2}
             \end{tabular} \par}
-            \vspace{3cm} 
-            {\sanhao \heiti \buaaatuniversity \buaaatschool \par 
-            \heiti \@date \par }
+            \vspace{3cm}
+            {\sanhao \bfseries \heiti \buaaatuniversity \buaaatschool \par
+            \xiaosan \mdseries \heiti \@date \par }
         \end{center}
         \vspace{\fill}
     \end{titlepage}
@@ -350,7 +351,7 @@
     paragraph={
         % format={\bfseries \zihao{-4}\songti},
         beforeskip={.0\baselineskip},
-        indent={2em} 
+        indent={2em}
     }
 }
 
