@@ -19,7 +19,7 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
 \ProcessOptions\relax
 % 引用ctexart及基本设置
-\LoadClass[a4paper,UTF8,titlepage,zihao=-4,AutoFakeBold]{ctexart}
+\LoadClass[a4paper,UTF8,titlepage,zihao=-4,AutoFakeBold,fontset=none]{ctexart}
 
 %%%%%%%%%% 宏包 %%%%%%%%%%
 % 全局通用宏包
@@ -39,17 +39,26 @@
 
 \let\songti\relax
 \let\heiti\relax
+\let\fangsong\relax
 
-\setCJKfamilyfont{songti}[AutoFakeBold={1.25}]{SimSun}
-\setCJKfamilyfont{heiti}[AutoFakeBold={1.25}]{SimHei}
+% \setCJKfamilyfont {⟨family⟩}[⟨font features⟩]{⟨font name⟩}
+% 声明新的 CJK 字体族 ⟨family⟩ 并指定字体
+\setCJKfamilyfont{song}[AutoFakeBold={1.25}, Path=\string fonts/]{simsun.ttc}
+\setCJKfamilyfont{hei}[AutoFakeBold={2}, Path=\string fonts/]{simhei.ttf}
+\setCJKfamilyfont{kai}[AutoFakeBold={2}, Path=\string fonts/]{KaiTiGB2312.TTF}
+\setCJKfamilyfont{fangsong}[AutoFakeBold={1.25}, Path=\string fonts/]{FangSongGB2312.TTF}
+\setCJKfamilyfont{hwxingkai}[AutoFakeBold={1.25}, Path=\string fonts/]{STXINGKA.TTF}
 
-\setCJKfamilyfont{hwxingkai}[AutoFakeBold={1.25}]{STXingkai}
-\setCJKfamilyfont{kaishu}[AutoFakeBold={1.25}]{STkaishu}
-
-\newcommand{\songti}{\CJKfamily{zhsong}}
-\newcommand{\heiti}{\CJKfamily{zhhei}}
+% \CJKfamily {⟨family⟩}
+% \CJKfamily + {⟨family⟩}
+% \CJKfamily - {⟨family⟩
+% 用于在文档中切换 CJK 字体族，⟨family⟩ 必须预先声明。\CJKfamily 仅对 CJK 字符类有效，
+% \CJKfamily+ 对所有字符类均有效，\CJKfamily- 对非 CJK 字符类有效。当 \CJKfamily+ 和 \CJKfamily- 的参数为空时，则使用当前的 CJK 字体族。
+\newcommand{\songti}{\CJKfamily{song}}
+\newcommand{\heiti}{\CJKfamily{hei}}
+\newcommand{\kaiti}{\CJKfamily{kai}}
+\newcommand{\fangsong}{\CJKfamily{fangsong}}
 \newcommand{\hwxingkai}{\CJKfamily{hwxingkai}}
-\newcommand{\kaiti}{\CJKfamily{kaishu}}
 
 \renewcommand{\textbf}[1]{{\bfseries\songti #1}}
 
@@ -75,33 +84,33 @@
 \definecolor{rowgray}{gray}{0.5}
 
 
-%%%%%%%%%% 学生信息 %%%%%%%%%%
+%%%%%%%%%% 信息 %%%%%%%%%%
 % 学校名称
 \gdef\buaaatuniversity{北京航空航天大学}
 \newcommand{\university}[1]{%
     \gdef\buaaatuniversity{#1}
 }
 % 学院
-\gdef\buaaatschool{计算机学院}
+\gdef\buaaatschool{XX学院}
 \newcommand{\school}[1]{%
     \gdef\buaaatschool{#1}
 }
 % 专业
-\gdef\buaaatmajor{计算机应用技术}
+\gdef\buaaatmajor{XX专业}
 \newcommand{\major}[1]{%
     \gdef\buaaatmajor{#1}
 }
 % 方向
-\gdef\buaaatdirection{虚拟现实技术}
+\gdef\buaaatdirection{XX方向}
 \newcommand{\direction}[1]{%
     \gdef\buaaatdirection{#1}
 }
-% 专业
+% 姓名
 \gdef\buaaatauthorname{作者姓名}
 \newcommand{\authorname}[1]{%
     \gdef\buaaatauthorname{#1}
 }
-% 专业
+% 导师
 \gdef\buaaattutor{导师}
 \newcommand{\tutor}[1]{%
     \gdef\buaaattutor{#1}
@@ -122,7 +131,7 @@
     \gdef\buaaatckeyword{#1}
 }
 % 英文关键词
-\gdef\buaaatekeyword{English key words}
+\gdef\buaaatekeyword{English keywords}
 \newcommand{\ekeyword}[1]{%
     \gdef\buaaatekeyword{#1}
 }
@@ -176,12 +185,12 @@
     \fancyfoot{}
     \pagenumbering{roman}
 
-    \fancyhead[L]{\zihao{-5}\kaishu
+    \fancyhead[L]{\zihao{-5}\kaiti
         \buaaatthesistitle \vspace{1.5mm}
     }
     \fancyfoot[C]{
         \hspace{1.5mm}
-        \kaishu\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
+        \kaiti\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
         \hfill\hfill
         \songti\zihao{-5}$\cdot$\quad\thepage\quad$\cdot$
         \hspace{1.5mm}
@@ -197,12 +206,12 @@
     \setcounter{page}{1}
     \pagenumbering{arabic}
 
-    \fancyhead[L]{\zihao{-5}\kaishu
+    \fancyhead[L]{\zihao{-5}\kaiti
         \buaaatthesistitle \vspace{1.5mm}
     }
     \fancyfoot[C]{
         \hspace{1.5mm}
-        \kaishu\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
+        \kaiti\zihao{-5}\buaaatuniversity\buaaatschool\buaaatdegree 学位论文\buaaatdoctype
         \hfill\hfill
         \songti\zihao{-5}$\cdot$\quad\thepage\quad$\cdot$
         \hspace{1.5mm}
@@ -225,18 +234,18 @@
         \linespread{1.2}
         \vspace*{\fill}
         \begin{center}
-            {\xiaoer \bfseries \kaishu \buaaatuniversity \buaaatschool \par}
+            {\xiaoer \bfseries \kaiti \buaaatuniversity \buaaatschool \par}
             \vspace{3cm}
             {\yihao \bfseries \heiti \buaaatdegree 研究生学位论文 \par \buaaatdoctype \par}
             \vspace{4cm}
-            {\xiaosan \kaishu
+            {\xiaosan \kaiti
             \begin{tabular}{rc}
-            \textbf{\kaishu 论文题目}： & \buaaatthesistitle \\ \cline{2-2}
-            \textbf{\kaishu 专~~~~~~~~业}： & \buaaatmajor \\ \cline{2-2}
-            \textbf{\kaishu 研究方向}： & \buaaatdirection \\ \cline{2-2}
-            \textbf{\kaishu 学~~~~~~~~号}： & \buaaatstuno \\ \cline{2-2}
-            \textbf{\kaishu 姓~~~~~~~~名}： & \buaaatauthorname \\ \cline{2-2}
-            \textbf{\kaishu 指导教师}： & \buaaattutor \\ \cline{2-2}
+            \textbf{\kaiti 论文题目}： & \buaaatthesistitle \\ \cline{2-2}
+            \textbf{\kaiti 专~~~~~~~~业}： & \buaaatmajor \\ \cline{2-2}
+            \textbf{\kaiti 研究方向}： & \buaaatdirection \\ \cline{2-2}
+            \textbf{\kaiti 学~~~~~~~~号}： & \buaaatstuno \\ \cline{2-2}
+            \textbf{\kaiti 姓~~~~~~~~名}： & \buaaatauthorname \\ \cline{2-2}
+            \textbf{\kaiti 指导教师}： & \buaaattutor \\ \cline{2-2}
             \end{tabular} \par}
             \vspace{3cm}
             {\sanhao \bfseries \heiti \buaaatuniversity \buaaatschool \par
@@ -403,7 +412,7 @@
 \RequirePackage{subfigure}
 \RequirePackage{booktabs}
 \RequirePackage{caption}
-\DeclareCaptionFont{kai}{\kaishu}
+\DeclareCaptionFont{kai}{\kaiti}
 \captionsetup[table]{labelsep=quad, font=kai}
 \captionsetup[figure]{labelsep=quad, font=kai}
 \captionsetup[figure]{
